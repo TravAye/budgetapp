@@ -18,7 +18,7 @@ let balance = 0;
 
 function updateBudget(event) {
     event.preventDefault();
-    monthlyIncome = incomeInput.value;
+    monthlyIncome = parseInt(incomeInput.value | 0);
     monthlyBudget.innerText = "$" + monthlyIncome;
     updateBalance();
 }
@@ -40,12 +40,12 @@ function addExpense(event) {
     event.preventDefault();
     let expense = {
         name: nameInput.value,
-        amount: amountInput.value,
+        amount: parseInt(amountInput.value | 0),
     };
     let newExpense = document.createElement("p");
     newExpense.innerText = expense.name + ": $" + expense.amount;
     expenseList.appendChild(newExpense);
-    let expenseAmount = parseInt(amountInput.value);
+    let expenseAmount = expense.amount;
     expenses.push(expenseAmount);
     updateExpenseTotal();
 }
